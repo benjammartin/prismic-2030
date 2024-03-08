@@ -1,13 +1,12 @@
-import { config as heroConfig, Hero as HeroComponent } from './hero';
+import { config as heroConfig, Hero as HeroComponent } from "./hero";
 
 export const configs = {
   hero: heroConfig,
 };
 
-interface Components {
-  [key: string]: React.ComponentType<any>;
-}
-
-export const components: Components = {
-  Hero: HeroComponent.default,
+export const components: Record<
+  string,
+  React.ComponentType<HeroComponent.HeroSliceProps>
+> = {
+  Hero: HeroComponent?.default,
 };

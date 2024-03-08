@@ -6,6 +6,7 @@ type NormalizedField = {
   name: string;
   type: string;
   children: string[];
+  props: Record<string, unknown>;
 };
 
 /** SCHEMA */

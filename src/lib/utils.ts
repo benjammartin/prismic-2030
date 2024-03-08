@@ -1,6 +1,6 @@
-import { customAlphabet } from 'nanoid';
+import { customAlphabet } from "nanoid";
 
-const nanoid = customAlphabet('1234567890abcdef', 10);
+const nanoid = customAlphabet("1234567890abcdef", 10);
 
 export function getNormalizedSlice(schema: Schema) {
   const id = `slice-${nanoid()}`;
@@ -10,6 +10,7 @@ export function getNormalizedSlice(schema: Schema) {
       type: schema.type,
       name: schema.name,
       children: fieldsKeys,
+      props: {},
     },
   };
   return { slice, sliceKey: id, fields, fieldsKeys };
@@ -23,10 +24,11 @@ export function getNormalizedFields(schema: Fields) {
         type: schema[field].config.type,
         name: field,
         children: [],
+        props: {},
       };
       return obj;
     },
-    {},
+    {}
   );
   return {
     fields: data,

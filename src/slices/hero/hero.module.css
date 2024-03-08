@@ -2,6 +2,7 @@
   text-align: center;
   padding-block: 128px;
   width: 100%;
+  border: 1px dashed black;
 }
 
 .title {
