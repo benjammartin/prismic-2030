@@ -1,0 +1,60 @@
+{
+  "id": "hero",
+  "name": "Hero",
+  "type": "slice",
+  "fields": {
+    "title": {
+      "config": {
+        "type": "text",
+        "name": "Title",
+        "placeholder": "Hero title"
+      }
+    },
+    "description": {
+      "config": {
+        "type": "text",
+        "name": "Description",
+        "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      }
+    },
+    "cards": {
+      "config": {
+        "type": "array",
+        "name": "Cards",
+        "placeholder": ""
+      },
+      "fields": {
+        "title": {
+          "config": {
+            "type": "text",
+            "name": "Title",
+            "placeholder": "Enter card title here"
+          }
+        },
+        "description": {
+          "config": {
+            "type": "text",
+            "name": "Description",
+            "placeholder": "Enter card description here"
+          }
+        },
+        "tags": {
+          "config": {
+            "type": "array",
+            "name": "Tags",
+            "placeholder": ""
+          },
+          "fields": {
+            "tag": {
+              "config": {
+                "type": "text",
+                "name": "Tag",
+                "placeholder": "Enter tag here"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
