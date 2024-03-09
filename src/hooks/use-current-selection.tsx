@@ -13,7 +13,10 @@ function useCurrentSelection() {
     ? state.components[state.selected]
     : null;
 
-  return selectedComponent;
+  return {
+    id: state.selected,
+    component: selectedComponent,
+  };
 }
 
 export default useCurrentSelection;

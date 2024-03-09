@@ -35,3 +35,13 @@ interface AppState {
   selected: string | null;
   components: NormalizedFields;
 }
+
+/** Props */
+
+type PrismicProp = {
+  id: string;
+} & ({ content: string; items?: never } | { items: string[]; content?: never });
+
+type PrismicProps = {
+  [key: string]: Prop;
+};

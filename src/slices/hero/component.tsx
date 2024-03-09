@@ -1,16 +1,11 @@
-import React from 'react';
-import styles from './hero.module.css';
+import React from "react";
+import styles from "./hero.module.css";
+import PrismicRichText from "@/components/prismic/prismic-rich-text";
 
 export type HeroSliceProps = {
   slice: string;
-  title: {
-    id: string;
-    content: string;
-  };
-  description: {
-    id: string;
-    content: string;
-  };
+  title: PrismicProp;
+  description: PrismicProp;
   cards: {
     id: string;
     items: string[];
@@ -20,12 +15,8 @@ export type HeroSliceProps = {
 const Hero: React.FC<HeroSliceProps> = (props) => {
   return (
     <div data-prismic-id={props.slice} className={styles.slice}>
-      <h1 data-prismic-id={props.title.id} className={styles.title}>
-        {props.title.content}
-      </h1>
-      <p data-prismic-id={props.description.id} className={styles.description}>
-        {props.description.content}
-      </p>
+      <PrismicRichText as="h1" field={props.title} />
+      <PrismicRichText as="p" field={props.description} />
       <div data-prismic-id={props.cards.id}>
         {props.cards.items.map(() => {
           return <div>Card</div>;

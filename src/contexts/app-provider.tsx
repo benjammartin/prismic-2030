@@ -5,7 +5,7 @@ import React from "react";
 // Represents the payloads for each action type
 type ActionPayloads = {
   ADD_SLICE: Schema;
-  SELECT_ELEMENT: string;
+  SELECT_ELEMENT: string | null;
 };
 
 // Represents the available actions

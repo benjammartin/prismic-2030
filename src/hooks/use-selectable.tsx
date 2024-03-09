@@ -1,31 +1,25 @@
 import { useCurrentAppContext } from "@/contexts/app-provider";
-import { useEffect, useRef } from "react";
+import { useOnClickOutside } from "usehooks-ts";
 
-const useSelectable = () => {
-  const ref = useRef<HTMLDivElement>(null);
+import React from "react";
+
+const useSelectable = (ref: React.MutableRefObject<null>) => {
+  useOnClickOutside(ref, () => {
+    dispatch({
+      type: "SELECT_ELEMENT",
+      payload: null,
+    });
+  });
+
   const { dispatch } = useCurrentAppContext();
-  useEffect(() => {
-    const styledElements = ref.current?.querySelectorAll("[data-prismic-id]");
-    styledElements?.forEach((el) => {
-      (el as HTMLElement).style.outline = "1px solid transparent";
+  const handleClick = (id: string) => {
+    dispatch({
+      type: "SELECT_ELEMENT",
+      payload: id,
     });
-  }, []);
-
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const target = e.target as HTMLElement;
-    const styledElements = ref.current?.querySelectorAll("[data-prismic-id]");
-    styledElements?.forEach((el) => {
-      (el as HTMLElement).style.outline = "1px solid transparent";
-    });
-    if (target.dataset.prismicId) {
-      target.style.outline = "1px solid blue";
-      dispatch({ type: "SELECT_ELEMENT", payload: target.dataset.prismicId });
-    }
   };
 
-  return { ref, handleClick };
+  return { handleClick };
 };
 
 export default useSelectable;

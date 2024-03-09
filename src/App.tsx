@@ -3,11 +3,19 @@ import AppContextProvider, {
 } from "./contexts/app-provider";
 import getProps from "./lib/get-props";
 import * as slices from "./slices";
-import useSelectable from "./hooks/use-selectable";
 import "./App.css";
 import "@radix-ui/themes/styles.css";
 import { Box, Grid } from "@radix-ui/themes";
 import useCurrentSelection from "./hooks/use-current-selection";
+import {
+  JsonView,
+  allExpanded,
+  collapseAllNested,
+  darkStyles,
+  defaultStyles,
+} from "react-json-view-lite";
+import "react-json-view-lite/dist/index.css";
+import PrismicSelector from "./components/prismic/prismic-selector";
 
 function App() {
   return (
@@ -37,26 +45,37 @@ const Controls = () => {
 
 const Editor = () => {
   const selection = useCurrentSelection();
-  return <div>{JSON.stringify(selection)}</div>;
+  const { state } = useCurrentAppContext();
+
+  return (
+    <div>
+      <div>{JSON.stringify(selection)}</div>
+      <JsonView
+        data={selection}
+        shouldExpandNode={allExpanded}
+        style={darkStyles}
+      />
+      <JsonView
+        data={state}
+        shouldExpandNode={collapseAllNested}
+        style={defaultStyles}
+      />
+    </div>
+  );
 };
 
 const Page = () => {
   const { state } = useCurrentAppContext();
-  const { ref, handleClick } = useSelectable();
-  console.log(state);
   return (
-    <div style={{ height: "100%" }} ref={ref} onClick={handleClick}>
-      <span style={{ position: "absolute", background: "red" }}>
-        {state.selected}
-      </span>
+    <div>
       {state.components["root"].children.map((slice) => {
         const component = state.components[slice];
         const props = getProps(component, state);
         const Component = slices.components[component.name];
         return (
-          <div key={slice}>
+          <PrismicSelector key={slice} fieldId={slice}>
             <Component {...Object.assign({ ...props, slice })} />
-          </div>
+          </PrismicSelector>
         );
       })}
     </div>

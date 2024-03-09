@@ -1,0 +1,28 @@
+.selector[data-selected="true"] {
+  box-shadow: blue 0px 0px 0px 1px inset;
+}
+
+.selector {
+  cursor: pointer;
+  transition: all 300ms ease;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.selector[data-selected="false"]:hover {
+  box-shadow: blue 0px 0px 0px 1px inset;
+}
+
+.selected {
+  border-radius: 2px;
+  position: absolute;
+  background: blue;
+  padding: 2px 4px;
+  color: white;
+  font-size: 9px;
+  bottom: -20px;
+  left: 50%;
+  text-transform: uppercase; /* Add this line */
+  transform: translateX(-50%); /* Add this line */
+  z-index: 2;
+}
