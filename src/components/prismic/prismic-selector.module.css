@@ -1,5 +1,5 @@
 .selector[data-selected="true"] {
-  box-shadow: blue 0px 0px 0px 1px inset;
+  border: 1px solid blue;
 }
 
 .selector {
@@ -9,12 +9,12 @@
   border: 1px solid transparent;
 }
 
-.selector[data-selected="false"]:hover {
-  box-shadow: blue 0px 0px 0px 1px inset;
+.selector[data-selected="false"] {
+  border: 1px dashed whitesmoke;
 }
 
 .selected {
-  border-radius: 2px;
+  border-radius: 1px;
   position: absolute;
   background: blue;
   padding: 2px 4px;

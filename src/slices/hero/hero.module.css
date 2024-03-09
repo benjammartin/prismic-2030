@@ -1,8 +1,8 @@
 .slice {
-  text-align: center;
-  padding-block: 128px;
+  padding: 64px 128px;
   width: 100%;
-  border: 1px dashed black;
+  background: white;
+  text-align: center;
 }
 
 .title {
@@ -18,4 +18,25 @@
   max-width: 640px;
   margin: auto;
   color: black;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 64px;
+}
+
+.card {
+  border: 1px solid black;
+  padding: 16px;
+}
+
+.tags {
+  display: flex;
+}
+
+.tag {
+  background: teal;
+  font-size: 11px;
+  padding: 2px 4px;
 }

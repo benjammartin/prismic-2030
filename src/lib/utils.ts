@@ -17,21 +17,35 @@ export function getNormalizedSlice(schema: Schema) {
 }
 
 export function getNormalizedFields(schema: Fields) {
+  let fields: NormalizedFields = {};
   const data = Object.keys(schema).reduce(
     (obj: NormalizedFields, field: string) => {
+      let nestedFields: NormalizedFields = {};
+      let fieldsKeys: string[] = [];
+
+      if (schema[field].fields) {
+        const result = getNormalizedFields(schema[field].fields!);
+        nestedFields = result.fields;
+        fieldsKeys = result.fieldsKeys;
+      }
+
       const id = `field-${nanoid()}`;
       obj[id] = {
         type: schema[field].config.type,
         name: field,
-        children: [],
-        props: {},
+        children: fieldsKeys,
+        props: {
+          children: "value",
+        },
       };
+      fields = { ...fields, ...nestedFields };
       return obj;
     },
     {}
   );
+
   return {
-    fields: data,
+    fields: { ...fields, ...data },
     fieldsKeys: Object.keys(data),
   };
 }

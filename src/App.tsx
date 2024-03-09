@@ -7,13 +7,7 @@ import "./App.css";
 import "@radix-ui/themes/styles.css";
 import { Box, Grid } from "@radix-ui/themes";
 import useCurrentSelection from "./hooks/use-current-selection";
-import {
-  JsonView,
-  allExpanded,
-  collapseAllNested,
-  darkStyles,
-  defaultStyles,
-} from "react-json-view-lite";
+import { JsonView, allExpanded, defaultStyles } from "react-json-view-lite";
 import "react-json-view-lite/dist/index.css";
 import PrismicSelector from "./components/prismic/prismic-selector";
 
@@ -46,18 +40,12 @@ const Controls = () => {
 const Editor = () => {
   const selection = useCurrentSelection();
   const { state } = useCurrentAppContext();
-
   return (
     <div>
       <div>{JSON.stringify(selection)}</div>
       <JsonView
-        data={selection}
-        shouldExpandNode={allExpanded}
-        style={darkStyles}
-      />
-      <JsonView
         data={state}
-        shouldExpandNode={collapseAllNested}
+        shouldExpandNode={allExpanded}
         style={defaultStyles}
       />
     </div>
@@ -66,6 +54,7 @@ const Editor = () => {
 
 const Page = () => {
   const { state } = useCurrentAppContext();
+  console.log(state);
   return (
     <div>
       {state.components["root"].children.map((slice) => {

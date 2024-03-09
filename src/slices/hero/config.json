@@ -24,32 +24,25 @@
         "placeholder": ""
       },
       "fields": {
-        "title": {
+        "group": {
           "config": {
-            "type": "text",
-            "name": "Title",
-            "placeholder": "Enter card title here"
-          }
-        },
-        "description": {
-          "config": {
-            "type": "text",
-            "name": "Description",
-            "placeholder": "Enter card description here"
-          }
-        },
-        "tags": {
-          "config": {
-            "type": "array",
-            "name": "Tags",
+            "type": "group",
+            "name": "Card",
             "placeholder": ""
           },
           "fields": {
-            "tag": {
+            "title": {
               "config": {
                 "type": "text",
-                "name": "Tag",
-                "placeholder": "Enter tag here"
+                "name": "Title",
+                "placeholder": "Card title"
+              }
+            },
+            "description": {
+              "config": {
+                "type": "text",
+                "name": "Description",
+                "placeholder": "Card description"
               }
             }
           }
