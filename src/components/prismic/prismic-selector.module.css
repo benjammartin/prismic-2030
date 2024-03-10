@@ -10,7 +10,7 @@
 }
 
 .selector[data-selected="false"] {
-  border: 1px dashed whitesmoke;
+  border: 1px solid transparent;
 }
 
 .selected {

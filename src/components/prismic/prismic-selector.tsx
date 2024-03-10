@@ -6,9 +6,10 @@ import styles from "./prismic-selector.module.css";
 const PrismicSelector: React.FC<{
   children: React.ReactNode;
   fieldId: string;
+  className?: string;
 }> = (props) => {
   const ref = React.useRef(null);
-  const { handleClick } = useSelectable(ref);
+  const { handleClick } = useSelectable();
   const { id, component } = useCurrentSelection();
   const isSelected = id === props.fieldId;
 

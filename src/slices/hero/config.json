@@ -1,7 +1,10 @@
 {
   "id": "hero",
-  "name": "Hero",
-  "type": "slice",
+  "config": {
+    "type": "slice",
+    "name": "Hero",
+    "placeholder": "Hero title"
+  },
   "fields": {
     "title": {
       "config": {
@@ -14,7 +17,7 @@
       "config": {
         "type": "text",
         "name": "Description",
-        "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+        "placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
       }
     },
     "cards": {
@@ -24,7 +27,7 @@
         "placeholder": ""
       },
       "fields": {
-        "group": {
+        "card": {
           "config": {
             "type": "group",
             "name": "Card",
@@ -43,6 +46,22 @@
                 "type": "text",
                 "name": "Description",
                 "placeholder": "Card description"
+              }
+            },
+            "tags": {
+              "config": {
+                "type": "array",
+                "name": "Tags",
+                "placeholder": "Add tags"
+              },
+              "fields": {
+                "tag": {
+                  "config": {
+                    "type": "text",
+                    "name": "Tag",
+                    "placeholder": "Add a tag"
+                  }
+                }
               }
             }
           }

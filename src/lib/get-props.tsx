@@ -13,14 +13,25 @@ function getProps(normalized: NormalizedField, state: AppState) {
             items: [getProps(component, state)],
           };
           break;
+        case "group":
+          acc[component.name] = {
+            id: value,
+            ...getProps(component, state),
+          };
+          break;
         default:
-          acc[component.name] = { id: value, content: "Hello" };
+          acc[component.name] = {
+            id: value,
+            content: component.props.children,
+          };
       }
       return acc;
     },
     {}
   );
   return {
+    type: normalized.type,
+    name: normalized.name,
     ...props,
   };
 }

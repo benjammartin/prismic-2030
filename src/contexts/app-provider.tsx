@@ -1,4 +1,4 @@
-import { getNormalizedSlice } from "@/lib/utils";
+import { getNormalizedFields, getNormalizedSlice } from "@/lib/utils";
 import { produce } from "immer";
 import React from "react";
 
@@ -6,6 +6,7 @@ import React from "react";
 type ActionPayloads = {
   ADD_SLICE: Schema;
   SELECT_ELEMENT: string | null;
+  UPDATE_ARRAY: Field;
 };
 
 // Represents the available actions
@@ -23,7 +24,17 @@ const INITIAL_STATE: AppState = {
   selected: null,
   components: {
     root: {
+      schema: {
+        config: {
+          type: "page",
+          name: "root",
+          placeholder: "Root",
+        },
+        fields: {},
+      },
       props: {},
+      parent: "root",
+      parentType: "page",
       type: "page",
       name: "root",
       children: [],
@@ -67,6 +78,22 @@ const reducer = produce((draft: AppState, action: AvailableAction) => {
     }
     case "SELECT_ELEMENT": {
       draft.selected = action.payload;
+      break;
+    }
+    case "UPDATE_ARRAY": {
+      const { fieldsKeys, fields } = getNormalizedFields(
+        action.payload.fields as Fields,
+        draft.selected,
+        "array"
+      );
+      draft.components = {
+        ...draft.components,
+        ...fields,
+      };
+      draft.components[draft.selected!].children = [
+        ...draft.components[draft.selected!].children,
+        ...fieldsKeys,
+      ];
       break;
     }
   }
